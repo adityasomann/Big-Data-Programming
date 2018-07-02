@@ -1,0 +1,81 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh12020\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 Hive\
+\
+1. Get City with max \'93Excellent\'94 Rating\
+\
+Query:\
+
+\b0 Select max(address.city) from tomato where rating.text = \'93Excellent\'94;\
+\
+
+\b 2. Get count of cities that use Indian Rupees\
+\
+Query:\
+
+\b0 Select count(address.city) from tomato where cost.currency = \'93Indian Rupees(Rs.)\'94;\
+\
+
+\b 3. Get the Costliest Restaurant Details\
+\
+Query:\
+
+\b0 Select name, address.address, address.city, cost.avg_cost from zomato sort by avg_cost desc limit 1;\
+\
+
+\b 4. Get the restaurant with the most number of votes\
+\
+Query:\
+
+\b0 Select name, address.address, address.city, rating.votes, cost.avg_cost from zomato sort by votes desc limit 1;\
+\
+
+\b 5. Get the restaurant with the best customer satisfaction\
+\
+Query:\
+
+\b0 Select name, addresss.address, address.city, cost.avg_cost, rating.text, cuisines from zomato where policy.table_booking = \'93Yes\'94 and policy.online_delivery=\'93Yes\'94 and policy.delv_now=\'93Yes\'94;\
+\
+
+\b 6. Get the Top 10 most recurring restaurants\
+\
+Query:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 Select name, count(*) as count from zomato group by name order by count desc limit 10;
+\b \
+\
+7. Get all restaurants that offer French Cuisine\
+\
+Query:\
+
+\b0 Select name, address.address, address.city, cost.avg_cost, rating.text from zomato where locate(\'93French\'94, cuisines)>0;\
+\
+
+\b 8. Get Top 10 restaurants with \'93Excellent\'94 rating and sort them by descending order of votes\
+\
+Query:\
+
+\b0 Select name, address.address, address.city, cuisines, rating.votes from zomato where rating.text = \'93Excellent\'94 sort by votes desc limit 10;\
+\
+
+\b 9. Get Top 10 restaurants with high price range and \'93Excellent\'94 rating and sort them by descending order of average cost\
+\
+Query:\
+
+\b0 Select name, address.address, address.city, cuisines, cost.avg_cost from zomato where cost.price_range > 3 and rating.text = \'93Excellent\'94 order by avg_cost desc limit 10;\
+\
+
+\b 10. Get Top 10 restaurants with high price range and \'93Poor\'94 rating and sort them by descending order of average cost\
+\
+Query:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 Select name, address.address, address.city, cuisines, cost.avg_cost from zomato where cost.price_range > 3 and rating.text = \'93Poor\'94 order by avg_cost desc limit 10;
+\b \
+}
